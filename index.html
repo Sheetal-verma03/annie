@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music Unplugged Studio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+
+      background: url('bck.png') no-repeat center center fixed;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      max-width: 200%;
+       margin-right: 0.5px;
+       min-height: 500dvh;
+    }
+
+    header {
+      background-color: rgba(87,15,117,0.9);
+      opacity: 70%;
+      padding: 60px 20px;
+      border-bottom: 4px solid transparent;
+      border-image: linear-gradient(45deg, #bd05fa, #FFAA00, #bd05fa);
+      border-image-slice: 1;
+      position: relative;
+      height: 60px;
+      text-align: center;
+    }
+
+    header img {
+      width: 150px;
+      height: 150px;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    header h1 {
+      margin-top: 0.5px;
+      font-size: 2.5rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+    }
+
+    nav a {
+      color: #8B5EA8;
+      text-decoration: none;
+      font-size: 18px;
+      text-shadow: 0 0 12px #8B5EA8;
+    }
+
+    nav a:hover {
+      color: #00aaff;
+      text-shadow: 0 0 16px #A463C2;
+    }
+
+    section {
+      padding: 50px 20px;
+      
+    }
+
+    h1, h2, p, label, button {
+      color: #ffffff;
+      text-shadow: 0 0 24px #ffffff;
+      margin-top: 0.5px;
+    }
+    h2{color: #ffffff;
+      text-shadow: 0 0 24px #ffffff;
+      position: relative; top: 160px;
+
+    }
+
+    img {
+      width: 100%;
+      max-height: 600px;
+      object-fit: cover;
+      border-radius: 12px;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .image-container {
+      position: relative;
+      width: 100%;
+      height: 600px;
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+
+    .image-container img {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      transition: left 1s ease-in-out;
+    }
+
+    .image-container img.active {
+      left: 0;
+    }
+
+    .image-container img.prev {
+      left: -100%;
+    }
+
+    .nav-buttons {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      right: 10px;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      transform: translateY(-50%);
+    }
+
+    .nav-buttons button {
+      background-color: rgba(87,15,117,0.85);
+      color: #ffffff;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 50%;
+      font-size: 18px;
+    }
+
+    .nav-buttons button:hover {
+      background-color: #ff5733;
+    }
+
+    .form-container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: rgba(87,15,117,0.85);
+      border-radius: 12px;
+      box-shadow: 0 0 20px #8B5EA8;
+    }
+
+    .form-container label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .form-container input,
+    .form-container select,
+    .form-container button {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 16px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 20px;
+      width: 300px;
+      margin-right: 0.5px;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      width: 100%;
+      margin-right: 0.5px;
+     position: relative;
+      
+
+
+
+
+
+          }
+
+    .tab {
+      display: flex;
+      background-color: rgba(87,15,117,0.85);
+      opacity: 70%;
+      padding: 20px;
+      width: 40%;
+      text-align: center;
+      border-radius: 12px;
+      height: 250px;
+      box-shadow: 0 0 20px #8B5EA8;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-right: 10px;
+    }
+
+    .artist1 { grid-column: 1; grid-row: 1; }
+    .text1 { grid-column: 2; grid-row: 1; }
+    .text2 { grid-column: 1; grid-row: 2; }
+    .artist2 { grid-column: 2; grid-row: 2;position: absolute;right: 60px}
+    .artist3 { grid-column: 1; grid-row: 3; }
+    .text3 { grid-column: 2; grid-row: 3; }
+    .text4 { grid-column: 1; grid-row: 4;   }
+    .artist4 { grid-column: 2; grid-row: 4; position: absolute;right: 60px;}
+    .artist5 { grid-column: 1; grid-row: 5; }
+    .text5 { grid-column: 2; grid-row: 5; }
+    .artist6 { grid-column: 2; grid-row: 6;position: absolute;right: 60px;}
+    .text6 { grid-column: 1; grid-row: 6; }
+
+    .blog-section {
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    .blog-card {
+      background-color: rgba(87,15,117,0.85);
+      opacity: 70%;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #8B5EA8;
+      position: relative; top: 160px;
+    }
+
+
+
+    .text-decoration{
+
+      color: #ffffff;
+      text-shadow: 0 0 24px #ffffff;
+       position: absolute; right: 80%;
+      position: absolute; top: 130%;
+      white-space: nowrap;
+
+    }
+      
+        footer {
+      background-color: rgba(87,15,117,0.9);
+      text-align: center;
+      padding: 20px;
+      border-top: 4px solid #8B5EA8;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="logo1.png" alt="Starlite Logo" />
+    <h1>Welcome to Music Unplugged Vibes</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#artists">Artists</a>
+      <a href="#blog-section">Blogs</a>
+      <a href="#events">Events</a>
+      <a href="#contest">Contest</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+
+
+
+
+  <section id="home">
+      <div class="image-container" id="image-container">
+    <img src="M1.png" alt="Image 1" class="active">
+    <img src="d2.png" alt="Image 2">
+    <img src="d3.png" alt="Image 3">
+    <div class="nav-buttons">
+      <button id="prev-btn">&lt;</button>
+      <button id="next-btn">&gt;</button>
+    </div>
+  
+  </section>
+
+  <section id ="artists">
+    <div class = "text-decoration" >
+    <h2>Featured Artists</h2></div>
+</section>
+
+<section class="tabs grid-container">
+
+    <div class="tab artist1">
+      <h3>Artist 1</h3>
+      <p>Genre: Pop</p>
+      <img src="artist1.jpg" alt="Artist 1" />
+    </div>
+    <div class="text1">Additional info about Artist 1</div>
+    <div class="tab artist2">
+      <h3>Artist 2</h3>
+      <p>Genre: Rock</p>
+      <img src="artist2.jpg" alt="Artist 2" />
+    </div>
+    <div class="text2">Additional info about Artist 2</div>
+    <div class="tab artist3">
+      <h3>Artist 3</h3>
+      <p>Genre: Jazz</p>
+      <img src="artist3.jpg" alt="Artist 3" />
+    </div>
+    <div class="text3">Additional info about Artist 3</div>
+    <div class="tab artist4">
+      <h3>Artist 4</h3>
+      <p>Genre: Hip-Hop</p>
+      <img src="artist4.jpg" alt="Artist 4" />
+    </div>
+    <div class="text4">Additional info about Artist 4</div>
+    <div class="tab artist5">
+      <h3>Artist 5</h3>
+      <p>Genre: Classical</p>
+      <img src="artist5.jpg" alt="Artist 5" />
+    </div>
+    <div class="text5">Additional info about Artist 5</div>
+    <div class="tab artist6">
+      <h3>Artist 6</h3>
+      <p>Genre: Electronic</p>
+      <img src="artist6.jpg" alt="Artist 6" />
+    </div>
+    <div class="text6">Additional info about Artist 6</div>
+  </section>
+
+  <section id="blog-section">
+    <h2>Latest Blog Posts</h2>
+    <div class="blog-card">
+      <h3>Blog Title 1</h3>
+      <p>Posted on March 25, 2025</p>
+      <p>Discover the latest trends in music and how they are changing the industry.</p>
+    </div>
+    <div class="blog-card">
+      <h3>Blog Title 2</h3>
+      <p>Posted on March 20, 2025</p>
+      <p>Our review of the top albums of the year! Read on to find out which artists are dominating the charts.</p>
+    </div>
+    <div class="blog-card">
+      <h3>Blog Title 3</h3>
+      <p>Posted on March 18, 2025</p>
+      <p>How technology is reshaping the way we listen to music and experience concerts.</p>
+    </div>
+  </section>
+
+  <section id="contest">
+    <h2>Join Our Music Contest</h2>
+    <br><br><br><br><br><br><br><br>
+    <p>🎤 Join the Music Unplugged Studio Contest! 🎶 <br><br>
+Are you a passionate singer, instrumentalist, or performer looking to showcase your talent?<br><br> Music Unplugged Studio invites all talented artists to be a part of our exciting Music Contest!<br><br>
+
+Whether you're a solo artist, a band, or an indie musician — this is your stage. <br><br>    Get a chance to perform, win exciting prizes, grow your fanbase, and be featured on our popular Instagram channel with a vibrant community of music lovers.<br><br>
+
+No fancy gear needed — just raw talent and a love for music.
+Spots fill quickly, so don’t wait! <br><br>
+
+👉 [Register Now] to join the next wave of local music legends.<br><br>
+
+Let your sound be heard. 🎶<br><br>
+Let the world know your name.</p>
+    <div class="form-container">
+      <form action="https://formspree.io/f/xjkyeprj" method="POST">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <label for="mobile">Mobile No</label>
+        <input type="tel" id="mobile" name="mobile" required>
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" required>
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" required>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+        <label for="city">City</label>
+        <input type="text" id="city" name="city" required>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h3>Contact Us</h3>
+    <p>Email: contact@starlitemusic.com</p>
+    <p>Phone: +91 98765 43210</p>
+    <p>Location: Delhi NCR, India</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Starlite Music Channel. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+
+    let currentIndex = 0;
+    const images = document.querySelectorAll('#image-container img');
+    const prevButton = document.getElementById('prev-btn');
+    const nextButton = document.getElementById('next-btn');
+
+    function changeImage(direction) {
+      images[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + (direction === 'next' ? 1 : -1) + images.length) % images.length;
+      images[currentIndex].classList.add('active');
+    }
+
+    prevButton.addEventListener('click', () => {
+      changeImage('prev');
+    });
+
+    nextButton.addEventListener('click', () => {
+      changeImage('next');
+    });
+  </script>
+</body>
+</html>
